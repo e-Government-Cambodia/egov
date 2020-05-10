@@ -1,0 +1,61 @@
+.comments {
+  > h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  ol.comment-list {
+    list-style: none;
+    padding: 0;
+
+    .children {
+      padding-left: 30px;
+    }
+
+    li {
+      article {
+        footer {
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .comment-respond {
+    h3 {
+      font-size: 22px;
+    }
+
+    form {
+      .comment-form-comment,
+      .comment-form-author,
+      .comment-form-email,
+      .comment-form-url {
+        label {
+          display: block;
+        }
+
+        textarea,
+        input {
+          display: block;
+          width: 100%;
+          padding: 10px 15px;
+          border: 1px solid #ddd;
+        }
+      }
+
+      .form-submit {
+        input {
+          padding: 8px 15px;
+          color: #fff;
+          background-color: #254187;
+          border: 1px solid #254187;
+          font-size: 18px;
+          -webkit-appearance: button;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
