@@ -120,10 +120,10 @@ class CustomTaxonomy
              * (array) Array of capabilities for this taxonomy.
              */
             'capabilities' => array(
-                'manage_terms' => 'manage_categories',
-                'edit_terms' => 'manage_categories',
-                'delete_terms' => 'manage_categories',
-                'assign_terms' => 'edit_posts'
+                'manage_terms' => 'manage_tourism-type',
+                'edit_terms' => 'edit_tourism-type',
+                'delete_terms' => 'delete_tourism-type',
+                'assign_terms' => 'assign_tourism-type'
             ),
 
             /**
@@ -137,7 +137,7 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'tourimn-type',
+                'slug' => 'tourism-type',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
@@ -292,10 +292,10 @@ class CustomTaxonomy
              * (array) Array of capabilities for this taxonomy.
              */
             'capabilities' => array(
-                'manage_terms' => 'manage_categories',
-                'edit_terms' => 'manage_categories',
-                'delete_terms' => 'manage_categories',
-                'assign_terms' => 'edit_posts'
+                'manage_terms' => 'manage_tourism-location',
+                'edit_terms' => 'edit_tourism-location',
+                'delete_terms' => 'delete_tourism-location',
+                'assign_terms' => 'assign_tourism-location'
             ),
 
             'supports' => array( 'thumbnail' ),
@@ -311,7 +311,7 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'tourimn-location',
+                'slug' => 'tourism-location',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
@@ -465,10 +465,10 @@ class CustomTaxonomy
              * (array) Array of capabilities for this taxonomy.
              */
             'capabilities' => array(
-                'manage_terms' => 'manage_categories',
-                'edit_terms' => 'manage_categories',
-                'delete_terms' => 'manage_categories',
-                'assign_terms' => 'edit_posts'
+                'manage_terms' => 'manage_service-type',
+                'edit_terms' => 'edit_service-type',
+                'delete_terms' => 'delete_service-type',
+                'assign_terms' => 'assign_service-type'
             ),
 
             'supports' => array( 'thumbnail' ),

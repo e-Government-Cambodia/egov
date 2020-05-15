@@ -30,4 +30,13 @@ class App extends Controller
         }
         return get_the_title();
     }
+
+    public static function getPostTerms( string $fields = 'slugs' ) {
+        global $post;
+        $taxonomies = get_post_taxonomies( $post->ID );
+        $terms_id = wp_get_post_terms( $post->ID, $taxonomies, array(
+            'fields' => $fields
+        ) );
+        return $terms_id;
+    }
 }

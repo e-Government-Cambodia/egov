@@ -9,7 +9,6 @@ class CustomPostType
 {
     public function register() {
         add_action( 'init', array( $this, 'registerCustomPostype') );
-        // add_filter('pre_get_posts', array( $this, 'customPostypeSearch' ) );
     }
 
     public function registerCustomPostype() {
@@ -124,7 +123,7 @@ class CustomPostType
              * e.g. array('story', 'stories'). 
              * Default 'post'.
              */
-            'capability_type' => 'post', 
+            'capability_type' => 'tourism', 
 
             /**
              * (array) Array of capabilities for this post type. 
@@ -137,7 +136,7 @@ class CustomPostType
              * (bool) Whether to use the internal default meta capability handling. 
              * Default false.
              */
-            // 'map_meta_cap' => false,
+            'map_meta_cap' => true,
             
             /**
              * Example: array( 'my_feature', array( 'field' => 'value' ) ). 
@@ -351,7 +350,7 @@ class CustomPostType
              * e.g. array('story', 'stories'). 
              * Default 'post'.
              */
-            'capability_type' => 'post', 
+            'capability_type' => 'service', 
 
             /**
              * (array) Array of capabilities for this post type. 
@@ -364,7 +363,7 @@ class CustomPostType
              * (bool) Whether to use the internal default meta capability handling. 
              * Default false.
              */
-            // 'map_meta_cap' => false,
+            'map_meta_cap' => true,
             
             /**
              * Example: array( 'my_feature', array( 'field' => 'value' ) ). 
@@ -468,14 +467,4 @@ class CustomPostType
         register_post_type( 'service', $args );
     }    
 
-    public function customPostypeSearch( $query ) {
-         // If we're on the search page, working with the main query, and searched something...
-        if ( is_search() && $query->is_main_query() && $query->get( 's' ) ) {
-    
-            // Include our CPT.
-            $query->set( 'post_type', array(
-                'tourism'
-            ) );
-        }
-    }
 }
