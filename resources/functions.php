@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $title
  */
 $sage_error = function ($message, $subtitle = '', $title = '') {
-    $title = $title ?: __('Sage &rsaquo; Error', 'sage');
+    $title = $title ?: __('Sage &rsaquo; Error', 'egov');
     $footer = '<a href="https://roots.io/sage/docs/">roots.io/sage/docs/</a>';
     $message = "<h1>{$title}<br><small>{$subtitle}</small></h1><p>{$message}</p><p>{$footer}</p>";
     wp_die($message, $title);
@@ -29,14 +29,14 @@ $sage_error = function ($message, $subtitle = '', $title = '') {
  * Ensure compatible version of PHP is used
  */
 if (version_compare('7.1', phpversion(), '>=')) {
-    $sage_error(__('You must be using PHP 7.1 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
+    $sage_error(__('You must be using PHP 7.1 or greater.', 'egov'), __('Invalid PHP version', 'egov'));
 }
 
 /**
  * Ensure compatible version of WordPress is used
  */
 if (version_compare('4.7.0', get_bloginfo('version'), '>=')) {
-    $sage_error(__('You must be using WordPress 4.7.0 or greater.', 'sage'), __('Invalid WordPress version', 'sage'));
+    $sage_error(__('You must be using WordPress 4.7.0 or greater.', 'egov'), __('Invalid WordPress version', 'egov'));
 }
 
 /**
@@ -45,8 +45,8 @@ if (version_compare('4.7.0', get_bloginfo('version'), '>=')) {
 if (!class_exists('Roots\\Sage\\Container')) {
     if (!file_exists($composer = __DIR__.'/../vendor/autoload.php')) {
         $sage_error(
-            __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
-            __('Autoloader not found.', 'sage')
+            __('You must run <code>composer install</code> from the Sage directory.', 'egov'),
+            __('Autoloader not found.', 'egov')
         );
     }
     require_once $composer;
@@ -61,7 +61,7 @@ if (!class_exists('Roots\\Sage\\Container')) {
 array_map(function ($file) use ($sage_error) {
     $file = "../app/{$file}.php";
     if (!locate_template($file, true, true)) {
-        $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
+        $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'egov'), $file), 'File not found');
     }
 }, ['helpers', 'setup', 'filters', 'admin']);
 

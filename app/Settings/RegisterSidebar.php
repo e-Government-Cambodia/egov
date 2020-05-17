@@ -26,7 +26,7 @@ class RegisterSidebar
         );
         register_sidebar( 
             array(
-                'name' => __('Footer', 'sage'),
+                'name' => __('Footer', 'egov'),
                 'id' => 'sidebar-footer'
             ) + $config
         );

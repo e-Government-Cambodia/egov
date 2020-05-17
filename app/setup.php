@@ -110,3 +110,7 @@ add_action('after_setup_theme', function () {
         return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
     });
 });
+
+add_action('after_setup_theme', function () {
+    load_theme_textdomain('egov', get_template_directory() . '/lang');
+});

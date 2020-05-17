@@ -182,7 +182,7 @@ class CustomizeLogo
                     'height' => 90,
                     'section' => 'title_tagline',
                     'settings' => 'logo_medium_setting_id',
-                    'description' => __( '2X = 90 × 90 pixels' ),
+                    'description' => __( '2X = 90 × 90 pixels', 'egov' ),
                 )
             )
         );
