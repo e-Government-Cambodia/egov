@@ -8,7 +8,7 @@
             @endif
             method="get">
             <div class="input-field input-group">
-                <input type="search" name="s" class="text-field form-control" placeholder="{{ __('Search All Government', 'egov' ) }}" value="{!! the_search_query() !!}">
+                <input type="search" name="s" class="text-field form-control" placeholder="<?php echo __( 'Search All Government', 'egov' ) ?>" value="{!! the_search_query() !!}">
                 <div class="input-group-append">
                     <button type="submit" class="submit-field btn btn-primary"><span class="d-none d-md-inline">{{ __( 'Search', 'egov' ) }}</span> <i class="icofont-search"></i></button>
                 </div>
@@ -16,7 +16,7 @@
         </form>
         <ul>
             <li>
-                <label>{{ __( 'Popular Keywords', 'egov' ) }}:</label>{{ __('Search All Government', 'egov' ) }}
+                <label>{{ __( 'Popular Keywords', 'egov' ) }}:</label>
                 <ul>
                     <li><a href="#">driver's license</a></li>
                     <li><a href="#">free health service</a></li>
