@@ -16,7 +16,7 @@
         </form>
         <ul>
             <li>
-                <label>{{ __( 'Popular Keywords', 'egov' ) }}:</label>
+                <label>{{ __( 'Popular Keywords', 'egov' ) }}:</label>{{ __('Search All Government', 'egov' ) }}
                 <ul>
                     <li><a href="#">driver's license</a></li>
                     <li><a href="#">free health service</a></li>
