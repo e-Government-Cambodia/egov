@@ -29,9 +29,16 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/"
-    }
+    },
+    "files": ["vendor/cmb2/init.php"]
   },
+  "extra": {
+		"installer-paths": {
+			"vendor/{$name}/": ["cmb2/cmb2"]
+		}
+	},
   "require": {
+    "cmb2/cmb2": "dev-master",
     "php": ">=7.1",
     "composer/installers": "~1.0",
     "illuminate/support": "5.6.*",

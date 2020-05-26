@@ -9,6 +9,13 @@ class CustomPostType
 {
     public function register() {
         add_action( 'init', array( $this, 'registerCustomPostype') );
+        add_action( 'pre_get_posts', array( $this, 'addCPTAuthor') );
+    }
+
+    public function addCPTAuthor( $query ) {
+        if ( !is_admin() && $query->is_author() && $query->is_main_query() ) {
+            $query->set( 'post_type', array( 'post', 'service', 'tourism' ) );
+        }
     }
 
     public function registerCustomPostype() {

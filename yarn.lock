@@ -917,9 +917,9 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
 bootstrap@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
-  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.0.tgz#97d9dbcb5a8972f8722c9962483543b907d9b9ec"
+  integrity sha512-Z93QoXvodoVslA+PWNdk23Hze4RBYIkpb5h8I2HY2Tu2h7A0LpAgLcyrhrSUyo2/Oxm2l1fRZPs1e5hnxnliXA==
 
 bowser@^1.7.3:
   version "1.9.4"
@@ -1664,12 +1664,13 @@ clone@^1.0.0, clone@^1.0.2:
 
 "cnphtml@github:e-Goverment-Cambodia/cnphtml":
   version "0.0.1"
-  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/4f0370e1f8b51fbb08541187f82328e1f73e8d83"
+  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/4cd4ff701135a2ce9f5d98dbf8bfa01a617c6100"
   dependencies:
     bootstrap "^4.4.1"
     jquery "^3.4.1"
+    mark.js "^8.11.1"
     masonry-layout "^4.2.2"
-    popper.js "^1.16.0"
+    popper.js "^1.16.1"
     slick-carousel "^1.8.1"
 
 co@3.1.0:
@@ -6050,6 +6051,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+mark.js@^8.11.1:
+  version "8.11.1"
+  resolved "https://registry.yarnpkg.com/mark.js/-/mark.js-8.11.1.tgz#180f1f9ebef8b0e638e4166ad52db879beb2ffc5"
+  integrity sha1-GA8fnr74sOY45BZq1S24eb6y/8U=
+
 markdown-escapes@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
@@ -7262,7 +7268,7 @@ pngquant-bin@^5.0.0:
     execa "^0.10.0"
     logalot "^2.0.0"
 
-popper.js@^1.16.0:
+popper.js@^1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==

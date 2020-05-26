@@ -8,7 +8,7 @@ namespace App\Settings;
 class RegisterNavMenu
 {
     public function register() {
-        add_action( 'after_setup_theme', array( $this, 'registerMenu') );
+        add_action( 'after_setup_theme', array( $this, 'registerMenu' ) );
     }
 
     public function registerMenu() {

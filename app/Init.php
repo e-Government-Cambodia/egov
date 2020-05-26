@@ -18,11 +18,15 @@ final class Init
 
     public static function getServices() {
         return array(
+            Settings\CMB2::class,
             Settings\CustomPostType::class,
             Settings\CustomTaxonomy::class,
             Settings\RegisterNavMenu::class,
             Settings\CustomizeLogo::class,
-            Settings\RegisterSidebar::class
+            Settings\RegisterSidebar::class,
+            Settings\AdminMenu::class,
+            Settings\WalkerTerm::class,
+            Settings\PostViewCount::class,
            
         );
     }
