@@ -564,7 +564,7 @@ class CustomTaxonomy
              * (bool) Whether the taxonomy is hierarchical. 
              * Default false.
              */
-            'hierarchical' => false,
+            'hierarchical' => true,
 
             /**
              * (bool) Whether to generate and allow a UI for managing terms in this taxonomy in the admin. 
@@ -737,7 +737,7 @@ class CustomTaxonomy
              * (bool) Whether the taxonomy is hierarchical. 
              * Default false.
              */
-            'hierarchical' => false,
+            'hierarchical' => true,
 
             /**
              * (bool) Whether to generate and allow a UI for managing terms in this taxonomy in the admin. 
