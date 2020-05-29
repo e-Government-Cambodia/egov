@@ -9,6 +9,8 @@ class CMB2
 {
     public function register() {
         add_action( 'cmb2_admin_init', array( $this, 'registerCMB2' ) );
+        // Default is egov_service_topic_icon
+        add_filter( 'egov_term_meta_key_icon_image', function( $args ) { return 'egov_service_topic_icon'; } );
     }
 
     public function registerCMB2() {
@@ -22,7 +24,7 @@ class CMB2
             'id'               => $prefix . 'edit',
             'title'            => esc_html__( 'Service Topic Metabox', 'egov' ),
             'object_types'     => array( 'term' ), 
-            'taxonomies'       => array( 'service-topic' ), 
+            'taxonomies'       => array( 'service-topic', 'service-group', 'service-sector' ), 
         ) );
 
         $cmb->add_field( array(

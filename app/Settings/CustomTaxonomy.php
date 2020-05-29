@@ -658,12 +658,12 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'service-topic',
+                'slug' => 'topic',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
                  */
-                'with_front' => true,
+                'with_front' => false,
                 /**
                  * (bool) Either hierarchical rewrite tag or not. 
                  * Default false.
@@ -682,7 +682,7 @@ class CustomTaxonomy
              * If false, a taxonomy cannot be loaded at ?{query_var}={term_slug}. 
              * If a string, the query ?{query_var}={term_slug} will be valid.
              */
-            'query_var' => 'service-topic',
+            'query_var' => true,
 
             /**
              * (callable) Works much like a hook, in that it will be called when the count is updated. 
@@ -831,12 +831,12 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'service-group',
+                'slug' => 'group',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
                  */
-                'with_front' => true,
+                'with_front' => false,
                 /**
                  * (bool) Either hierarchical rewrite tag or not. 
                  * Default false.
@@ -855,7 +855,7 @@ class CustomTaxonomy
              * If false, a taxonomy cannot be loaded at ?{query_var}={term_slug}. 
              * If a string, the query ?{query_var}={term_slug} will be valid.
              */
-            'query_var' => 'service-group',
+            'query_var' => true,
 
             /**
              * (callable) Works much like a hook, in that it will be called when the count is updated. 
@@ -877,5 +877,8 @@ class CustomTaxonomy
          * $object_type : (array|string) (Required) Object type or array of object types with which the taxonomy should be associated.
          */
         register_taxonomy( 'service-group', 'service', $args );
+
+        add_rewrite_rule( '^group/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-group=$matches[1]&service-topic=$matches[2]', 'top' );
+        add_rewrite_rule( '^topic/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-topic=$matches[1]&service-group=$matches[2]', 'top' );
     }
 }

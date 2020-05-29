@@ -39,4 +39,36 @@ class App extends Controller
         ) );
         return $terms_id;
     }
+
+    public static function postViewCount() {
+        $post_view_count = get_post_meta( get_the_ID(), 'post_view_count', true );
+        
+        if( ! $post_view_count ) {
+            return 0;
+        }
+
+        $value = self::formatKMG( $post_view_count );
+        return $value;
+    }
+
+    public static function formatKMG( $number ) {
+        $number_format = number_format_i18n( $number );
+        $exploded = explode( ',', $number_format );
+        $count = count( $exploded );
+
+        switch ( $count ) {
+            case 2:
+                $value = number_format_i18n( $number/1000, 1 ) . __( 'K', 'egov-block' );
+                break;
+            case 3:
+                $value = number_format_i18n( $number/1000000, 1 ) . __( 'M', 'egov-block' );
+                break;
+            case 4:
+                $value = number_format_i18n( $number/1000000000, 1 ) . __( 'G', 'egov-block' );
+                break;
+            default:
+                $value = $number;
+        }
+        return $value;
+    }
 }

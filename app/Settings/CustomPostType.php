@@ -9,6 +9,7 @@ class CustomPostType
 {
     public function register() {
         add_action( 'init', array( $this, 'registerCustomPostype') );
+        // Display archive for author
         add_action( 'pre_get_posts', array( $this, 'addCPTAuthor') );
     }
 
@@ -389,7 +390,7 @@ class CustomPostType
              * (array) An array of taxonomy identifiers that will be registered for the post type. 
              * Taxonomies can be registered later with register_taxonomy() or register_taxonomy_for_object_type().
              */
-            'taxonomies' => array( 'service-type' ),
+            'taxonomies' => array( 'service-sector, service-topic, service-group' ),
             
             /**
              * (bool|string) Whether there should be post type archives, or if a string, the archive slug to use. 
@@ -415,7 +416,7 @@ class CustomPostType
              * (bool) Whether the permastruct should be prepended with WP_Rewrite::$front. 
              * Default true.
              */
-            'with_front' => true,
+            'with_front' => false,
             
             /**
              * (bool) Whether the feed permastruct should be built for this post type. 
@@ -441,7 +442,7 @@ class CustomPostType
              * Defaults to $post_type key. If false, a post type cannot be loaded at ?{query_var}={post_slug}. 
              * If specified as a string, the query ?{query_var_string}={post_slug} will be valid.
              */
-            'query_var' => 'service',
+            'query_var' => true,
             
             /**
              * (bool) Whether to allow this post type to be exported. 
