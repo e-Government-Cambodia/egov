@@ -8,13 +8,13 @@
             @endif
             method="get">
             <div class="input-field input-group">
-                <input type="search" name="s" class="text-field form-control" placeholder="<?php echo __( 'Search All Government', 'egov' ) ?>" value="{!! the_search_query() !!}">
+                <input type="search" autocomplete="off" name="s" class="text-field form-control typeahead" placeholder="<?php echo __( 'Search All Government', 'egov' ) ?>" value="{!! the_search_query() !!}">
                 <div class="input-group-append">
                     <button type="submit" class="submit-field btn btn-primary"><span class="d-none d-md-inline">{{ __( 'Search', 'egov' ) }}</span> <i class="icofont-search"></i></button>
                 </div>
             </div>
         </form>
-        <ul>
+        {{-- <ul>
             <li>
                 <label>{{ __( 'Popular Keywords', 'egov' ) }}:</label>
                 <ul>
@@ -23,6 +23,6 @@
                     <li><a href="#">birth registration</a></li>
                 </ul>
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </section>

@@ -10,7 +10,7 @@ class PostViewCount
     public function register() {
         add_action( 'wp_head', array( $this, 'callBackFunction') );
         // Defaul is post_view_count
-        // add_filter( 'egov_meta_value_num', function( $args ) { return 'post_view_count'; } );
+        // add_filter( 'egov_meta_value_num', function( $args ) { return 'post_view_count_2'; } );
     }
 
     public function callBackFunction() {

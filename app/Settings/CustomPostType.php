@@ -390,14 +390,14 @@ class CustomPostType
              * (array) An array of taxonomy identifiers that will be registered for the post type. 
              * Taxonomies can be registered later with register_taxonomy() or register_taxonomy_for_object_type().
              */
-            'taxonomies' => array( 'service-sector, service-topic, service-group' ),
+            'taxonomies' => array( 'service-for, service-topic, service-i-want-to' ),
             
             /**
              * (bool|string) Whether there should be post type archives, or if a string, the archive slug to use. 
              * Will generate the proper rewrite rules if $rewrite is enabled. 
              * Default false.
              */
-            'has_archive' => true,
+            'has_archive' => false,
             
             /**
              * (bool|array) Triggers the handling of rewrites for this post type. 

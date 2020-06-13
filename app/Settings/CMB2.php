@@ -24,7 +24,7 @@ class CMB2
             'id'               => $prefix . 'edit',
             'title'            => esc_html__( 'Service Topic Metabox', 'egov' ),
             'object_types'     => array( 'term' ), 
-            'taxonomies'       => array( 'service-topic', 'service-group', 'service-sector' ), 
+            'taxonomies'       => array( 'service-topic', 'service-for', 'service-i-want-to' ), 
         ) );
 
         $cmb->add_field( array(

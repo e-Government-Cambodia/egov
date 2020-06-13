@@ -105,20 +105,6 @@
 @if ( has_nav_menu( 'main_menu' ) )
 <nav class="navbar navbar-expand-lg navbar-light p-0">
   <div class="container">
-    <!--ul class="text-center list-inline navbar-brand my-auto ml-3 d-lg-none language">
-      <li class="list-inline-item">
-          <a href="#">
-              <img height="19px" src="{{ get_stylesheet_directory_uri() }}/assets/images/kh.jpg" />
-              <span>KH</span>
-          </a>
-      </li>
-      <li class="list-inline-item">
-          <a href="#">
-              <img height="19px" src="{{ get_stylesheet_directory_uri() }}/assets/images/en.jpg" />
-              <span>EN</span>
-          </a>
-      </li>
-    </ul-->
     @if( function_exists( 'pll_the_languages' ) )
       <ul class="text-center list-inline navbar-brand my-auto ml-3 d-lg-none language">
       @php
@@ -188,12 +174,14 @@
   /*level 1 on active*/
   .navbar ul.menu > li.current-menu-item > a,
   .navbar ul.menu > li.current-post-ancestor > a,
-  .navbar ul.menu > li.current-menu-ancestor > a { background-color: #254187; color: #fff; }
+  .navbar ul.menu > li.current-post-ancestor > a,
+  .navbar ul.menu > li.current-page-ancestor > a { background-color: #254187; color: #fff; }
   /*level 1 dropdown arrow color*/
   .navbar ul.menu > li.menu-item-has-children > a::after { border-top-color: rgba(0, 0, 0, 0.1); }
   /*level 1 dropdown arrow color on active*/
   .navbar ul.menu > li.menu-item-has-children.current-menu-item > a::after,
   .navbar ul.menu > li.menu-item-has-children.current-menu-ancestor > a::after,
+  .navbar ul.menu > li.menu-item-has-children.current-page-ancestor > a::after,
   .navbar ul.menu > li.menu-item-has-children.current-post-ancestor > a::after { border-top-color: #fff; }
   
   /*nex level*/
@@ -202,6 +190,7 @@
   /*next level on active */
   .navbar ul.menu li ul li.current-menu-item > a,
   .navbar ul.menu li ul li.current-menu-ancestor > a,
+  .navbar ul.menu li ul li.current-page-ancestor > a,
   .navbar ul.menu li ul li.current-post-ancestor > a,
   .navbar ul.menu li ul li a:hover { color: #343a40; background-color: rgba(0, 0, 0, 0.1); }
   /*next level dropdown arrow color*/
@@ -209,6 +198,7 @@
   /*next level dropdown arrow color on active*/
   .navbar ul.menu li ul li.menu-item-has-children.current-menu-item > a::after,
   .navbar ul.menu li ul li.menu-item-has-children.current-menu-ancestor > a::after,
+  .navbar ul.menu li ul li.menu-item-has-children.current-page-ancestor > a::after,
   .navbar ul.menu li ul li.menu-item-has-children.current-post-ancestor > a::after { border-left-color: rgba(0, 0, 0, 0.1); }
 }
 /* medium devices (tablets, 768px and up) */
@@ -218,12 +208,14 @@
   /*level 1 on active*/
   .navbar ul.menu li.current-menu-item > a,
   .navbar ul.menu li.current-post-ancestor > a,
+  .navbar ul.menu li.current-page-ancestor > a,
   .navbar ul.menu li.current-menu-ancestor > a { background-color: transparent; color: #343a40; font-weight: bold;}
   /*level 1 dropdown arrow color*/
   .navbar ul.menu > li.menu-item-has-children > a::after { border-top-color: rgba(0, 0, 0, 0.1); }
   /*level 1 dropdown arrow color on active*/
   .navbar ul.menu > li.menu-item-has-children.current-menu-item > a::after,
   .navbar ul.menu > li.menu-item-has-children.current-menu-ancestor > a::after,
+  .navbar ul.menu > li.menu-item-has-children.current-page-ancestor > a::after,
   .navbar ul.menu > li.menu-item-has-children.current-post-ancestor > a::after { border-top-color: rgba(0, 0, 0, 0.1); }
 
   /*nex level*/
@@ -231,6 +223,7 @@
   .navbar ul.menu li ul li a { color: #343a40; font-size: 15px; padding-top: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px; }
   /*next level on active */
   .navbar ul.menu li ul li.current-menu-item > a,
+  .navbar ul.menu li ul li.current-page-ancestor > a,
   .navbar ul.menu li ul li.current-menu-ancestor > a,
   .navbar ul.menu li ul li.current-post-ancestor > a,
   .navbar ul.menu li ul li a:hover { color: #343a40; background-color: transparent; font-weight: bold; }
@@ -239,6 +232,7 @@
   /*next level dropdown arrow color on active*/
   .navbar ul.menu li ul li.menu-item-has-children.current-menu-item > a::after,
   .navbar ul.menu li ul li.menu-item-has-children.current-menu-ancestor > a::after,
+  .navbar ul.menu li ul li.menu-item-has-children.current-page-ancestor > a::after,
   .navbar ul.menu li ul li.menu-item-has-children.current-post-ancestor > a::after { border-top-color: rgba(0, 0, 0, 0.1); }
 }
 </style>

@@ -27,6 +27,7 @@ final class Init
             Settings\AdminMenu::class,
             Settings\WalkerTerm::class,
             Settings\PostViewCount::class,
+            Settings\RegisterRestRoute::class
            
         );
     }

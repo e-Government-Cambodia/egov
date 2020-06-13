@@ -357,7 +357,7 @@ class CustomTaxonomy
          * $object_type : (array|string) (Required) Object type or array of object types with which the taxonomy should be associated.
          */
         register_taxonomy( 'tourism-location', 'tourism', $args );
-
+        
         $args = array(
             /**
              * (array) An array of labels for this taxonomy. 
@@ -365,13 +365,13 @@ class CustomTaxonomy
              * See accepted values in get_taxonomy_labels().
              */
             'labels' => array(
-                'name' => __( 'Service Sector', 'egov-block' )
+                'name' => __( 'Service For', 'egov-block' )
             ),
 
             /**
              * (string) A short descriptive summary of what the taxonomy is for.
              */
-            'description' => __( 'Service Sector Taxonomy created for store group type of services.', 'egov-block' ),
+            'description' => __( 'Service For Taxonomy created for store group type of services.', 'egov-block' ),
             
             
             /**
@@ -422,7 +422,7 @@ class CustomTaxonomy
              * (string) To change the base url of REST API route. 
              * Default is $taxonomy.
              */
-            'rest_base' => 'service-sector',
+            'rest_base' => 'service-for',
 
             /**
              * (string) REST API Controller class name. 
@@ -465,10 +465,10 @@ class CustomTaxonomy
              * (array) Array of capabilities for this taxonomy.
              */
             'capabilities' => array(
-                'manage_terms' => 'manage_service-sector',
-                'edit_terms' => 'edit_service-sector',
-                'delete_terms' => 'delete_service-sector',
-                'assign_terms' => 'assign_service-sector'
+                'manage_terms' => 'manage_service-for',
+                'edit_terms' => 'edit_service-for',
+                'delete_terms' => 'delete_service-for',
+                'assign_terms' => 'assign_service-for'
             ),
 
             'supports' => array( 'thumbnail' ),
@@ -484,12 +484,12 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'service-sector',
+                'slug' => 'for',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
                  */
-                'with_front' => true,
+                'with_front' => false,
                 /**
                  * (bool) Either hierarchical rewrite tag or not. 
                  * Default false.
@@ -508,7 +508,7 @@ class CustomTaxonomy
              * If false, a taxonomy cannot be loaded at ?{query_var}={term_slug}. 
              * If a string, the query ?{query_var}={term_slug} will be valid.
              */
-            'query_var' => 'service-sector',
+            'query_var' => true,
 
             /**
              * (callable) Works much like a hook, in that it will be called when the count is updated. 
@@ -529,9 +529,8 @@ class CustomTaxonomy
          * $taxonomy : (string) (Required) Taxonomy key, must not exceed 32 characters.
          * $object_type : (array|string) (Required) Object type or array of object types with which the taxonomy should be associated.
          */
-        register_taxonomy( 'service-sector', 'service', $args );
+        register_taxonomy( 'service-for', 'service', $args );
         
-
         $args = array(
             /**
              * (array) An array of labels for this taxonomy. 
@@ -704,7 +703,7 @@ class CustomTaxonomy
          * $object_type : (array|string) (Required) Object type or array of object types with which the taxonomy should be associated.
          */
         register_taxonomy( 'service-topic', 'service', $args );
-
+        
         $args = array(
             /**
              * (array) An array of labels for this taxonomy. 
@@ -712,13 +711,13 @@ class CustomTaxonomy
              * See accepted values in get_taxonomy_labels().
              */
             'labels' => array(
-                'name' => __( 'Service Group', 'egov-block' )
+                'name' => __( 'Service I Want To', 'egov-block' )
             ),
 
             /**
              * (string) A short descriptive summary of what the taxonomy is for.
              */
-            'description' => __( 'Service Group Taxonomy created for store group type of services.', 'egov-block' ),
+            'description' => __( 'Service I Want To Taxonomy created for store group type of services.', 'egov-block' ),
             
             
             /**
@@ -769,7 +768,7 @@ class CustomTaxonomy
              * (string) To change the base url of REST API route. 
              * Default is $taxonomy.
              */
-            'rest_base' => 'service-group',
+            'rest_base' => 'service-i-want-to',
 
             /**
              * (string) REST API Controller class name. 
@@ -812,10 +811,10 @@ class CustomTaxonomy
              * (array) Array of capabilities for this taxonomy.
              */
             'capabilities' => array(
-                'manage_terms' => 'manage_service-group',
-                'edit_terms' => 'edit_service-group',
-                'delete_terms' => 'delete_service-group',
-                'assign_terms' => 'assign_service-group'
+                'manage_terms' => 'manage_service-i-want-to',
+                'edit_terms' => 'edit_service-i-want-to',
+                'delete_terms' => 'delete_service-i-want-to',
+                'assign_terms' => 'assign_service-i-want-to'
             ),
 
             'supports' => array( 'thumbnail' ),
@@ -831,7 +830,7 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'group',
+                'slug' => 'i-want-to',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
@@ -876,9 +875,9 @@ class CustomTaxonomy
          * $taxonomy : (string) (Required) Taxonomy key, must not exceed 32 characters.
          * $object_type : (array|string) (Required) Object type or array of object types with which the taxonomy should be associated.
          */
-        register_taxonomy( 'service-group', 'service', $args );
+        register_taxonomy( 'service-i-want-to', 'service', $args );
 
-        add_rewrite_rule( '^group/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-group=$matches[1]&service-topic=$matches[2]', 'top' );
-        add_rewrite_rule( '^topic/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-topic=$matches[1]&service-group=$matches[2]', 'top' );
+        add_rewrite_rule( '^i-want-to/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-i-want-to=$matches[1]&service-for=$matches[2]', 'top' );
+        add_rewrite_rule( '^topic/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-topic=$matches[1]&service-for=$matches[2]', 'top' );
     }
 }

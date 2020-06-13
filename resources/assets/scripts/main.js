@@ -1,7 +1,8 @@
 // import external dependencies
 // import 'jquery';
 import 'cnphtml/dist/main.js';
-
+import 'typeahead.js/dist/typeahead.bundle.js'
+import Bloodhound from 'typeahead.js/dist/bloodhound.js'
 // Import everything from autoload
 import './autoload/**/*'
 
@@ -23,3 +24,11 @@ const routes = new Router({
 
 // Load Events
 jQuery(document).ready(() => routes.loadEvents());
+
+var data = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: '/wp-json/wp/v1/all-posts',
+});
+
+jQuery('.typeahead').typeahead( null, { name: 'fuck', source: data } );
