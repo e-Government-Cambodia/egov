@@ -12,23 +12,23 @@ class App extends Controller
     }
 
     public static function title()
-    {
-        if (is_home()) {
-            if ($home = get_option('page_for_posts', true)) {
-                return get_the_title($home);
-            }
-            return __('Latest Posts', 'egov');
+    {        
+        switch ( true ) {
+            case is_home():
+                if ( $home = get_option( 'page_for_posts', true ) ) {
+                    return get_the_title( $home );
+                }
+                return __( 'Latest Posts', 'egov' );
+            case is_archive():
+                return get_queried_object()->name;
+            case is_search():
+                return sprintf( __( 'Search Results for %s', 'egov' ), get_search_query() );
+            case is_404():
+                return __( 'Not Found', 'egov' );
+            
+            default:
+                return get_the_title();
         }
-        if (is_archive()) {
-            return get_the_archive_title();
-        }
-        if (is_search()) {
-            return sprintf(__('Search Results for %s', 'egov'), get_search_query());
-        }
-        if (is_404()) {
-            return __('Not Found', 'egov');
-        }
-        return get_the_title();
     }
 
     public static function getPostTerms( string $fields = 'slugs' ) {
@@ -50,25 +50,6 @@ class App extends Controller
         $value = self::formatKMG( $post_view_count );
         return $value;
     }
-
-    // private static function getHierachy( array $terms, $parent = 0 ) {
-    //     $hierachy = array();
-
-    //     foreach ( $terms as $term ) 
-    //     {
-    //         if ( $term->parent == $parent ) {
-    //             $children = App::getHierachy( $terms, $term->term_id );
-                
-    //             if ( $children ) {
-    //                 $term->children = $children;
-    //             }
-                
-    //             array_push( $hierachy, $term );
-    //         }
-    //     }
-
-    //     return $hierachy;
-    // }
 
     public static function formatKMG( $number ) {
         $number_format = number_format_i18n( $number );

@@ -26,54 +26,70 @@
 				<div class="tab-collapse">
 					<div class="row row-cols-2">
 						<div class="col-12 col-md-4">
-							<div class="nav m-0">
+							<div id="tab-collapse" role="tablist" aria-orientation="vertical" class="nav m-0">
 								@foreach ( $child_object as $key => $obj )
-									@if ( $key === 0 )
-										<a class="nav-link w-100 active">
-											<strong>{{ $object->name }}</strong> @php echo $object->count ? '('.$object->count.')' : '' @endphp
-										</a>
-									@endif
-									<a class="nav-link w-100" href="{{ get_term_link( $obj->term_id ) }}">
-										<i class="icofont-minus"></i> {{ $obj->name }} @php echo $obj->count ? '('.$obj->count.')' : '' @endphp
+									<a id="tab-collapse-{{ $obj->term_id }}" data-toggle="pill" href="#tab-{{ $obj->term_id }}" aria-controls="tab-{{ $obj->term_id }}" aria-selected="{{ $key === 0 ? 'true' : 'false' }}" class="nav-link w-100 {{ $key === 0 ? 'active' : '' }}">
+										<strong>{{ $obj->name }}</strong> @php echo $obj->count ? '('.$obj->count.')' : '' @endphp
 									</a>
 								@endforeach								
 							</div>
 						</div>
 						<div class="col-12 col-md">
-							<div class="tab-content">
+							<div class="tab-content" id="accordion-tab-collapse">
 								@foreach ( $child_object as $key => $obj )
-									@if ( $key === 0 )
-										<div class="tab-pane fade active show">
-											<div class="collapse-title">
-												<button class="btn btn-link btn-block " type="button">
-													<strong>{{ $object->name }}</strong> @php echo $object->count ? '('.$object->count.')' : '' @endphp
-												</button>
-											</div>
-											<div class="collapse show">
-												<div class="collapse-body">
-													<section>
-														<div class="block-list">
-															@while(have_posts()) @php the_post() @endphp
+									<div id="tab-{{ $obj->term_id }}" role="tabpanel" aria-labelledby="tab-collapse-{{ $obj->term_id }}" class="tab-pane fade {{ $key === 0 ? 'active show' : '' }}">
+										<div id="heading-{{ $obj->term_id }}" class="collapse-title">
+											<button data-toggle="collapse" data-tab="#tab-{{ $obj->term_id }}" data-target="#collapse-tab-{{ $obj->term_id }}" aria-expanded="{{ $key === 0 ? 'true' : 'false' }}" aria-controls="collapse-tab-{{ $obj->term_id }}" class="btn btn-link btn-block {{ $key === 0 ? '' : 'collapsed' }}" type="button">
+												<strong>{{ $obj->name }}</strong> @php echo $obj->count ? '('.$obj->count.')' : '' @endphp
+											</button>
+										</div>
+										<div id="collapse-tab-{{ $obj->term_id }}" aria-labelledby="heading-{{ $obj->term_id }}" data-parent="#accordion-tab-collapse" class="collapse {{ $key === 0 ? 'show' : '' }}">
+											<div class="collapse-body">
+												<section>
+													<div class="block-list">
+														@php
+															$subterm = get_terms( array(
+																'taxonomy' => $obj->taxonomy,
+																'hide_empty' => true,
+																'parent' => $obj->term_id
+															) ) ;
+														@endphp
+														@if ( count( $subterm ) )
+															<div class="col">
+																<article class="wrap-item">
+																	@foreach ( $subterm as $term )
+																		<a class="text-light p-1 bg-primary" href="{{ get_term_link( $obj->term_id ) }}#tab-{{ $term->term_id }}">{{ $term->name }}</a>
+																	@endforeach
+																</article>
+															</div>
+														@endif
+														@php
+															$args = array(
+																'post_type' => 'service',
+																'tax_query' => array(
+																	array(
+																		'taxonomy' => 'service-topic',
+																		'field'    => 'slug',
+																		'terms'    => $obj->slug,
+																	),
+																	'posts_per_page' => -1
+																),
+															);
+															$query = new WP_Query( $args );
+														@endphp
+														@if ( $query->have_posts() )
+															@while ( $query->have_posts() )
+																@php $query->the_post() @endphp
 																@include('partials.content-'.get_post_type())
 															@endwhile
-														</div>
-													</section>
-													@include('partials.paginate-link')
-												</div>
+														@endif
+														@php wp_reset_postdata() @endphp
+													</div>
+												</section>
 											</div>
-										</div>
-									@endif
-									<div class="tab-pane fade">
-										<div class="collapse-title">
-											<a href="{{ get_term_link( $obj->term_id ) }}">
-												<button class="btn btn-link btn-block collapsed" type="button">
-													<i class="icofont-minus"></i> {{ $obj->name }} @php echo $obj->count ? '('.$obj->count.')' : '' @endphp
-												</button>
-											</a>
 										</div>
 									</div>
 								@endforeach	
-							
 							</div>
 						</div>
 					</div>

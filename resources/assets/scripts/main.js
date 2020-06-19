@@ -24,11 +24,16 @@ const routes = new Router({
 
 // Load Events
 jQuery(document).ready(() => routes.loadEvents());
-
+let locale = document.querySelector( '.typeahead' );
+if( ! locale.dataset.lang ) {
+  locale = 'default'
+} else {
+  locale = locale.dataset.lang
+}
 var data = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: '/wp-json/wp/v1/all-posts',
+  prefetch: '/wp-json/wp/v1/all-posts/'+locale,
 });
 
-jQuery('.typeahead').typeahead( null, { name: 'fuck', source: data } );
+jQuery('.typeahead').typeahead( null, { source: data } );
