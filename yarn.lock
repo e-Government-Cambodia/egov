@@ -1654,10 +1654,10 @@ clone@^1.0.0, clone@^1.0.2:
 
 "cnphtml@github:e-Goverment-Cambodia/cnphtml":
   version "0.0.1"
-  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/5df3461f1ccd1a3a904bceaa5fa2738366c2e2d0"
+  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/85ba640929471491e2745e8d26059f9798c99a14"
   dependencies:
     bootstrap "^4.4.1"
-    jquery "^3.4.1"
+    jquery "^3.5.1"
     mark.js "^8.11.1"
     masonry-layout "^4.2.2"
     popper.js "^1.16.1"
@@ -5277,7 +5277,7 @@ jpegtran-bin@^3.0.0:
     bin-wrapper "^3.0.0"
     logalot "^2.0.0"
 
-jquery@>=1.7, jquery@^3.3.1, jquery@^3.4.1:
+jquery@>=1.7, jquery@^3.3.1, jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==

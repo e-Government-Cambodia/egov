@@ -5,6 +5,7 @@
 		@include('partials.search')
 		@include('partials.page-header')
 		@include('partials.breadcrumbs-egov')
+		
 		@if (!have_posts())
 			<div class="alert alert-warning">
 				{{ __('Sorry, no results were found.', 'egov') }}
@@ -20,7 +21,15 @@
 			) ) ;
 			// print_r($object);
 			// echo ( get_term_link( $object->term_id ) )
+			$thumbnail = get_term_meta( $object->term_id, 'egov_service_topic_thumbnail', true );
 		@endphp
+		
+		@if ( $thumbnail )
+			
+		<section class="wp-block-egov-block-hero-banner"><figure class="hero-banner"><div class="aspectratio-21-9 aspectratio-md-4-1  "><div class="img blend" style="background-image:url( {{ $thumbnail }} );background-color:rgba(0, 0, 0, 0.55)"></div></div><figcaption class="hero-content d-flex"><div class="my-auto"><h2 class="hero-title">{{ $object->description }}</h2></div></figcaption></figure></section>
+			
+		@endif
+
 		@if ( count( $child_object ) )
 			<section class="service-detail">
 				<div class="tab-collapse">

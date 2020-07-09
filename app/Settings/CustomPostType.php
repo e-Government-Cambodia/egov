@@ -11,6 +11,28 @@ class CustomPostType
         add_action( 'init', array( $this, 'registerCustomPostype') );
         // Display archive for author
         add_action( 'pre_get_posts', array( $this, 'addCPTAuthor') );
+
+        // Add custom post type wp_block capability args
+        add_filter( 'register_post_type_args', array( $this, 'registerPostTypeArgs' ), 10, 2 );
+    }
+
+    public function registerPostTypeArgs( $args, $post_type ) {
+        
+        if ( $post_type == 'wp_block' ) {
+            $args['capability_type'] = 'wp_block';
+            $cap = array(
+                'read' => 'edit_wp_blocks',
+                'create_posts' => 'publish_wp_blocks',
+                'edit_posts' => 'edit_wp_blocks',
+                'edit_published_posts' => 'edit_published_wp_blocks',
+                'delete_published_posts' => 'delete_published_wp_blocks',
+                'edit_others_posts' => 'edit_others_wp_blocks',
+                'delete_others_posts' => 'delete_others_wp_blocks'
+            );
+            $args['capabilities'] = $cap;
+        }
+     
+        return $args;
     }
 
     public function addCPTAuthor( $query ) {

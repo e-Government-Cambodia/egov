@@ -51,6 +51,30 @@ class CMB2
             ),
             'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
         ) );
+        $cmb->add_field( array(
+            'name'    => 'Thumbnail',
+            'desc'    => 'The thumbnail display on the archive.',
+            'id'      => $prefix . 'thumbnail',
+            'type'    => 'file',
+            // Optional:
+            'options' => array(
+                'url' => false, // Hide the text input for the url
+            ),
+            'text'    => array(
+                'add_upload_file_text' => 'Add an Thumbnail' // Change upload button text. Default: "Add or Upload File"
+            ),
+            // query_args are passed to wp.media's library query.
+            'query_args' => array(
+                // 'type' => 'application/pdf', // Make library only display PDFs.
+                // Or only allow gif, jpg, or png images
+                'type' => array(
+                	'image/gif',
+                	'image/jpeg',
+                	'image/png',
+                ),
+            ),
+            'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+        ) );
 
     }    
 
