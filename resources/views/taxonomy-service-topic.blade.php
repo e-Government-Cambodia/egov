@@ -26,7 +26,7 @@
 		
 		@if ( $thumbnail )
 			
-		<section class="wp-block-egov-block-hero-banner"><figure class="hero-banner"><div class="aspectratio-21-9 aspectratio-md-4-1  "><div class="img blend" style="background-image:url( {{ $thumbnail }} );background-color:rgba(0, 0, 0, 0.55)"></div></div><figcaption class="hero-content d-flex"><div class="my-auto"><h2 class="hero-title">{{ $object->description }}</h2></div></figcaption></figure></section>
+		<section class="wp-block-egov-block-hero-banner"><figure class="hero-banner"><div class="aspectratio-4-1"><div class="img blend" style="background-image:url( {{ $thumbnail }} );background-color:rgba(0, 0, 0, 0.55)"></div></div><figcaption class="hero-content d-flex"><div class="my-auto"><h2 class="hero-title">{{ $object->description }}</h2></div></figcaption></figure></section>
 			
 		@endif
 
@@ -80,9 +80,9 @@
 																		'taxonomy' => 'service-topic',
 																		'field'    => 'slug',
 																		'terms'    => $obj->slug,
-																	),
-																	'posts_per_page' => -1
+																	)
 																),
+																'posts_per_page' => -1
 															);
 															$query = new WP_Query( $args );
 														@endphp

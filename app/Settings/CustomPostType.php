@@ -192,7 +192,7 @@ class CustomPostType
              * Will generate the proper rewrite rules if $rewrite is enabled. 
              * Default false.
              */
-            'has_archive' => true,
+            'has_archive' => false,
             
             /**
              * (bool|array) Triggers the handling of rewrites for this post type. 

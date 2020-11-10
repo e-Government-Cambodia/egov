@@ -1654,7 +1654,7 @@ clone@^1.0.0, clone@^1.0.2:
 
 "cnphtml@github:e-Goverment-Cambodia/cnphtml":
   version "0.0.1"
-  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/85ba640929471491e2745e8d26059f9798c99a14"
+  resolved "https://codeload.github.com/e-Goverment-Cambodia/cnphtml/tar.gz/3122fa876e6701a1e363b313989736cf75382dff"
   dependencies:
     bootstrap "^4.4.1"
     jquery "^3.5.1"

@@ -4,7 +4,7 @@
 	<div class="container">
 		@include('partials.search')
 		@include('partials.page-header')
-		@include('partials.breadcrumbs-egov')
+		@include('partials.breadcrumbs')
 		@if (!have_posts())
 			<div class="alert alert-warning">
 				{{ __('Sorry, no results were found.', 'egov') }}
