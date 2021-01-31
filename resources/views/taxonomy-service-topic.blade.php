@@ -76,6 +76,12 @@
 															$args = array(
 																'post_type' => 'service',
 																'tax_query' => array(
+																	// 'relation' => 'AND',
+																	// array(
+																	// 	'taxonomy' => 'service-for',
+																	// 	'field'    => 'term_id',
+																	// 	'terms'    => 266
+																	// ),
 																	array(
 																		'taxonomy' => 'service-topic',
 																		'field'    => 'slug',
