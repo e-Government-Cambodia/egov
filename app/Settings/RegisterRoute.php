@@ -23,7 +23,40 @@ class RegisterRoute
             'methods'  => 'GET',
             'callback' => array( $this, 'getUnionTermList' )
         ) );
-    }    
+        register_rest_route( 'wp/v2', '/get-all-posts/type=(?P<type>[a-zA-Z0-9-]+)/lang=(?P<lang>[a-zA-Z0-9-]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', array(
+            // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
+            'methods'  => 'GET',
+            'callback' => array( $this, 'getAllPosts' )
+        ) );
+    }   
+    
+    public function getAllPosts( $request ) {
+        $type = $request['type'];
+        $lang = $request['lang'];
+        $base = $request['base'];
+        $page = $request['page'];
+        $ssl = 'https';
+
+        // Initialize the array that will receive the posts' data. 
+        $json = array();
+
+        // Get the posts using the 'post' and 'news' post types
+        $posts = get_posts( array(
+                'post_type' => $type,
+                'lang' => $lang,
+                'posts_per_page' => 1000            
+            )
+        ); 
+
+        // Loop through the posts and push the desired data to the array we've initialized earlier in the form of an object
+        foreach( $posts as $post ) {
+            array_push( $json, array(
+                "title" => $post->post_title,
+                "url" => $ssl.'://'.$base.'/'.$page.'?service_id='.$post->ID
+            ) );
+        }                  
+        return rest_ensure_response( $json ); 
+    }
 
     public function getTermList( $request ) {
         
@@ -122,7 +155,15 @@ class RegisterRoute
 
         $current_term = get_term( $topic, $taxonomy );
         // return rest_ensure_response( $current_term );
-
+        $html.='
+        <section>
+            <header class="block-heading text-left">
+                <h4 class="text-danger font-weight-bold">
+                    '.$current_term->name.'
+                </h4>
+            </header>
+        </section>
+        ';
         $thumbnail = get_term_meta( $topic, 'egov_service_topic_thumbnail', true );
         if ( $thumbnail )
         $html .= '<section class="wp-block-egov-block-hero-banner"><figure class="hero-banner"><div class="aspectratio-4-1"><div class="img blend" style="background-image:url( '.$thumbnail.' );background-color:rgba(0, 0, 0, 0.55)"></div></div><figcaption class="hero-content d-flex"><div class="my-auto"><h2 class="hero-title">'.$current_term->description.'</h2></div></figcaption></figure></section>';
