@@ -13,59 +13,77 @@ class RegisterRoute
     }
 
     public function registerCallback() {
-        register_rest_route( 'wp/v2', '/get-term-for/(?P<param>[a-zA-Z0-9-]+)', array(
+        register_rest_route( 'wp/v2', 
+            '/get-all-posts/type=(?P<type>[a-zA-Z0-9-]+)/level=(?P<level>[a-zA-Z0-9-,]+)/lang=(?P<lang>[a-zA-Z0-9-]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', 
+            array(
+                // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
+                'methods'  => \WP_REST_Server::READABLE,
+                'callback' => array( $this, 'getAllPosts' )
+            )
+        );
+        register_rest_route( 'wp/v2', '/get-term-for/for=(?P<for>[a-zA-Z0-9-]+)/level=(?P<level>[a-zA-Z0-9-,]+)', array(
             // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
             'methods'  => \WP_REST_Server::READABLE,
             'callback' => array( $this, 'getTermList' )
         ) );
-        register_rest_route( 'wp/v2', '/get-union-term/topic=(?P<topic>[a-zA-Z0-9-]+)/for=(?P<for>[a-zA-Z0-9-]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', array(
+        register_rest_route( 'wp/v2', '/get-union-term/topic=(?P<topic>[a-zA-Z0-9-]+)/for=(?P<for>[a-zA-Z0-9-]+)/level=(?P<level>[a-zA-Z0-9-,]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', array(
             // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
             'methods'  => 'GET',
             'callback' => array( $this, 'getUnionTermList' )
-        ) );
-        register_rest_route( 'wp/v2', '/get-all-posts/type=(?P<type>[a-zA-Z0-9-]+)/lang=(?P<lang>[a-zA-Z0-9-]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', array(
-            // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
-            'methods'  => 'GET',
-            'callback' => array( $this, 'getAllPosts' )
         ) );
     }   
     
     public function getAllPosts( $request ) {
         $type = $request['type'];
+        $level = explode(",", $request['level']);
         $lang = $request['lang'];
         $base = $request['base'];
         $page = $request['page'];
         $ssl = 'https';
 
         // Initialize the array that will receive the posts' data. 
-        $json = array();
+        $data = array();
 
-        // Get the posts using the 'post' and 'news' post types
+        // Get the posts using the 'post' and 'news' post types 
         $posts = get_posts( array(
                 'post_type' => $type,
                 'lang' => $lang,
-                'posts_per_page' => 1000            
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'service-level',
+                        'field'    => 'term_id',
+                        'terms'    => $level
+                    )
+                )
             )
-        ); 
+        );
 
         // Loop through the posts and push the desired data to the array we've initialized earlier in the form of an object
         foreach( $posts as $post ) {
-            array_push( $json, array(
+            // array_push( $data, array(
+            //     "title" => $post->post_title,
+            //     "url" => $ssl.'://'.$base.'/'.$page.'?service_id='.$post->ID
+            // ) );
+            
+            // $data[] = $post->post_title.'<p hidden>-----'.$ssl.'://'.$base.'/'.$page.'?service_id='.$post->ID.'-----</p>';
+            $data[] = [
                 "title" => $post->post_title,
                 "url" => $ssl.'://'.$base.'/'.$page.'?service_id='.$post->ID
-            ) );
+            ];  
         }                  
-        return rest_ensure_response( $json ); 
+        return rest_ensure_response( $data ); 
     }
 
     public function getTermList( $request ) {
         
      
-        $param = $request['param'];
+        $service_for = $request['for'];
+        $service_level = explode(",", $request['level']);
         
         $union_terms = array();
 
-        if ( $param ) {
+        if ( $service_for && $service_level ) {
             
             $terms = get_terms( array( 
                 'taxonomy' => 'service-topic', 
@@ -75,7 +93,7 @@ class RegisterRoute
 
             $union_terms = array_values( $terms );
             
-            if ( $param ) {
+            if ( $service_for ) {
                 
                 $union_terms = array();
                 foreach ( $terms as $term ) {
@@ -87,12 +105,17 @@ class RegisterRoute
                             array(
                                 'taxonomy' => 'service-for',
                                 'field'    => 'term_id',
-                                'terms'    => $param
+                                'terms'    => $service_for
                             ),
                             array(
                                 'taxonomy' => 'service-topic',
                                 'field'    => 'term_id',
                                 'terms'    => $term->term_id
+                            ),
+                            array(
+                                'taxonomy' => 'service-level',
+                                'field'    => 'term_id',
+                                'terms'    => $service_level
                             )
                         ),
                         'posts_per_page' => 1
@@ -141,19 +164,20 @@ class RegisterRoute
     public function getUnionTermList( $request ) {
         $topic = $request['topic'];
         $for = $request['for'];
+        $level = explode(",", $request['level']);
         $base = $request['base'];
         $page = $request['page'];
-        $taxonomy = 'service-topic';
+        $taxonomy_topic = 'service-topic';
         $ssl = 'https';
         $html = '';
         
         $child_object = get_terms( array(
-            'taxonomy' => $taxonomy,
+            'taxonomy' => $taxonomy_topic,
             'hide_empty' => true,
             'parent' => $topic
         ) ) ;
 
-        $current_term = get_term( $topic, $taxonomy );
+        $current_term = get_term( $topic, $taxonomy_topic );
         // return rest_ensure_response( $current_term );
         $html.='
         <section>
@@ -178,14 +202,43 @@ class RegisterRoute
 						<div class="col-12 col-md-4">
                             <div id="tab-collapse" role="tablist" aria-orientation="vertical" class="nav m-0">
             ';
+                                $zin = true;
 								foreach ( $child_object as $key => $obj ) {
-                                    $boolean = ($key === 0) ? 'true' : 'false';
-                                    $active = ($key === 0) ? 'active' : '';
+                                    $boolean = ($zin) ? 'true' : 'false';
+                                    $active = ($zin) ? 'active' : '';
+
+                                    $args = array(
+                                        'post_type' => 'service',
+                                        'tax_query' => array(
+                                            'relation' => 'AND',
+                                            array(
+                                                'taxonomy' => 'service-for',
+                                                'field'    => 'term_id',
+                                                'terms'    => $for
+                                            ),
+                                            array(
+                                                'taxonomy' => $taxonomy_topic,
+                                                'field'    => 'slug',
+                                                'terms'    => $obj->slug,
+                                            ),
+                                            array(
+                                                'taxonomy' => 'service-level',
+                                                'field'    => 'term_id',
+                                                'terms'    => $level,
+                                            )
+                                        ),
+                                        'posts_per_page' => -1
+                                    );
+                                    $query = new \WP_Query( $args );
+                                    if ( $query->have_posts() ) {
                                     $html .= '
                                         <a id="tab-collapse-'.$obj->term_id.'" data-toggle="pill" href="#tab-'.$obj->term_id.'" aria-controls="tab-'.$obj->term_id.'" aria-selected="'.$boolean.'" class="nav-link w-100 '.$active.'">
                                             <strong>'.$obj->name.'</strong>
                                         </a>
                                     ';
+                                    $zin = false;
+                                    }
+                                    wp_reset_postdata();
                                 }	
             $html .= '							
 							</div>
@@ -193,11 +246,36 @@ class RegisterRoute
                         <div class="col-12 col-md">
                             <div class="tab-content" id="accordion-tab-collapse">
             ';
+                                $zin = true;
 								foreach ( $child_object as $key => $obj ) {
-                                    $boolean = ($key === 0) ? 'true' : 'false';
-                                    $active = ($key === 0) ? 'active show' : '';
-                                    $collapsed = ($key === 0) ? '' : 'collapsed';
-                                    $show = ($key === 0) ? 'show' : '';
+                                    $boolean = ($zin) ? 'true' : 'false';
+                                    $active = ($zin) ? 'active show' : '';
+                                    $collapsed = ($zin) ? '' : 'collapsed';
+                                    $show = ($zin) ? 'show' : '';
+                                    $args = array(
+                                        'post_type' => 'service',
+                                        'tax_query' => array(
+                                            'relation' => 'AND',
+                                            array(
+                                                'taxonomy' => 'service-for',
+                                                'field'    => 'term_id',
+                                                'terms'    => $for
+                                            ),
+                                            array(
+                                                'taxonomy' => $taxonomy_topic,
+                                                'field'    => 'slug',
+                                                'terms'    => $obj->slug,
+                                            ),
+                                            array(
+                                                'taxonomy' => 'service-level',
+                                                'field'    => 'term_id',
+                                                'terms'    => $level,
+                                            )
+                                        ),
+                                        'posts_per_page' => -1
+                                    );
+                                    $query = new \WP_Query( $args );
+                                    if ( $query->have_posts() ) {
                                     $html .= '
 									<div id="tab-'.$obj->term_id.'" role="tabpanel" aria-labelledby="tab-collapse-'.$obj->term_id.'" class="tab-pane fade '.$active.'">
 										<div id="heading-'.$obj->term_id.'" class="collapse-title">
@@ -211,44 +289,6 @@ class RegisterRoute
                                                     <div class="block-list">
                                     ';
 														
-                                                        $subterm = get_terms( array(
-                                                            'taxonomy' => $obj->taxonomy,
-                                                            'hide_empty' => true,
-                                                            'parent' => $obj->term_id
-                                                        ) ) ;
-														
-														if ( count( $subterm ) ) {
-                                                            $html .= '
-                                                            <div class="col">
-                                                                <article class="wrap-item">
-                                                            ';
-																	foreach ( $subterm as $term ) {
-																		$html .= '<a class="text-light p-1 bg-primary" href="'.get_term_link( $topic ).'#tab-'.$term->term_id.'">'.$term->name.'</a>';
-                                                                    }
-                                                            $html .= '
-																</article>
-                                                            </div>
-                                                            ';
-                                                        }
-                                                        $args = array(
-                                                            'post_type' => 'service',
-                                                            'tax_query' => array(
-                                                                'relation' => 'AND',
-                                                                array(
-                                                                    'taxonomy' => 'service-for',
-                                                                    'field'    => 'term_id',
-                                                                    'terms'    => $for
-                                                                ),
-                                                                array(
-                                                                    'taxonomy' => $taxonomy,
-                                                                    'field'    => 'slug',
-                                                                    'terms'    => $obj->slug,
-                                                                )
-                                                            ),
-                                                            'posts_per_page' => -1
-                                                        );
-                                                        $query = new \WP_Query( $args );
-														if ( $query->have_posts() ) {
 															while ( $query->have_posts() ) {
                                                                 $query->the_post();
                                                                 $html .= '
@@ -262,8 +302,6 @@ class RegisterRoute
                                                                 </div>
                                                                 ';
                                                             }
-                                                        }
-                                                        wp_reset_postdata();
                                     $html .= '
 													</div>
 												</section>
@@ -271,6 +309,9 @@ class RegisterRoute
 										</div>
                                     </div>
                                     ';
+                                    $zin = false;
+                                    }
+                                    wp_reset_postdata();
                                 }	
                                 
 			$html .= '		</div>
@@ -279,8 +320,56 @@ class RegisterRoute
                 </div>
             </section>
             ';
+        } else { //$html.= 'for='.$for.'&topic='.$topic.'&level='.$level;
+            $args = array(
+                'post_type' => 'service',
+                'tax_query' => array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy' => 'service-for',
+                        'field'    => 'term_id',
+                        'terms'    => $for
+                    ),
+                    array(
+                        'taxonomy' => $taxonomy_topic,
+                        'field'    => 'term_id',
+                        'terms'    => $topic,
+                    ),
+                    array(
+                        'taxonomy' => 'service-level',
+                        'field'    => 'term_id',
+                        'terms'    => $level,
+                    )
+                ),
+                'posts_per_page' => -1
+            );
+            $query = new \WP_Query( $args );
+            if ( $query->have_posts() ) {
+                $html .= '
+                <section>
+                    <div class="block-list">
+                ';
+                while ( $query->have_posts() ) {
+                    $query->the_post();
+                    $html .= '
+                    <div class="col">
+                        <article class="wrap-item hrb">
+                            <h5 class="title"><a href="'.$ssl.'://'.$base.'/'.$page.'?service_id='.get_the_id().'">'.get_the_title().'</a></h5>
+                            <div class="excerpt">
+                                '.get_the_excerpt().'
+                            </div>
+                        </article>
+                    </div>
+                    ';
+                }
+                $html .= '
+                    </div>
+                </section>
+                ';
+            }
+            wp_reset_postdata();
         }
-
+        
         return rest_ensure_response( $html );
     }
 }

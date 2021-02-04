@@ -544,7 +544,7 @@ class CustomTaxonomy
             /**
              * (string) A short descriptive summary of what the taxonomy is for.
              */
-            'description' => __( 'Service For Taxonomy created for store group type of services.', 'egov-block' ),
+            'description' => __( 'Service Level Taxonomy created for store group type of services.', 'egov-block' ),
             
             
             /**
@@ -657,7 +657,7 @@ class CustomTaxonomy
                  * (string) Customize the permastruct slug. 
                  * Default $taxonomy key.
                  */
-                'slug' => 'for',
+                'slug' => 'level',
                 /**
                  * (bool) Should the permastruct be prepended with WP_Rewrite::$front. 
                  * Default true.
@@ -1052,5 +1052,6 @@ class CustomTaxonomy
 
         add_rewrite_rule( '^i-want-to/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-i-want-to=$matches[1]&service-for=$matches[2]', 'top' );
         add_rewrite_rule( '^topic/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-topic=$matches[1]&service-for=$matches[2]', 'top' );
+        add_rewrite_rule( '^level/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-level=$matches[1]&service-for=$matches[2]', 'top' );
     }
 }
