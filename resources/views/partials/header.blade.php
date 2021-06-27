@@ -162,6 +162,7 @@
 @endif
 
 <style type="text/css">
+.block-topic figure img { background-color: #254187; border-radius: 50%;}
 /* custom theme options default for navbar */
 .navbar { background-color: #f8f9fa; }
 .navbar .navbar-toggler { background-color: #254187; }

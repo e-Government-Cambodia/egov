@@ -3,6 +3,7 @@
 @section('content')
 	<div class="container">
 		@include('partials.search')
+		{{-- Type --}}
 		@include('partials.page-header')
 		{{-- @include('partials.breadcrumbs-egov') --}}
 
@@ -60,7 +61,7 @@
 
 		<div class="d-md-flex tab-collapse">
                     
-			<div class="nav flex-column" role="tablist" aria-orientation="vertical">
+			<div class="nav flex-column" role="tablist" aria-orientation="vertical" style="min-width:200px">
 
 				@foreach ( $type_terms as $key => $term )
 					@php $active = '' @endphp
@@ -105,7 +106,7 @@
 												<figure>
 													<div class="thumbnail">
 														<div class="aspectratio-4-3">
-															<div class="img" style="background-image: url({!! get_the_post_thumbnail_url( get_the_id(), 'thumbnail' ) !!});"></div>
+															<div class="img" style="background-image: url({!! get_the_post_thumbnail_url( get_the_id(), 'meduim' ) !!});"></div>
 														</div>
 													</div>
 													<figcaption class="block text-left">

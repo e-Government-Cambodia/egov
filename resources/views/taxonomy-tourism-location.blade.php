@@ -3,6 +3,7 @@
 @section('content')
 	<div class="container">
 		@include('partials.search')
+		{{-- Location --}}
 		@include('partials.page-header')
 		{{-- @include('partials.breadcrumbs-egov') --}}
 
@@ -20,10 +21,43 @@
 				'hide_empty' => false,
 				'parent' => 0
 			) ) ;
+			$union_terms = array();
+                
+			foreach ( $type_terms as $term ) {
+				// Attribute for WP_Query class
+				$args = array(
+					'post_type' => 'tourism',
+					'tax_query' => array(
+						'relation' => 'AND',
+						array(
+							'taxonomy' => 'tourism-location',
+							'field'    => 'slug',
+							'terms'    => $object->slug
+						),
+						array(
+							'taxonomy' => 'tourism-type',
+							'field'    => 'term_id',
+							'terms'    => $term->term_id
+						)
+					),
+					'posts_per_page' => 1
+				);
+					
+				$the_query = new \WP_Query( $args );
+				if ( $the_query->have_posts() ) {
+					array_push( $union_terms, $term );
+				}
+				// Restore original Post Data
+				wp_reset_postdata();
+			}
 		@endphp
-
+		{{-- <pre>
+		@dump($union_terms)
+		</pre> --}}
 		{{-- @dump($location_terms) --}}
 		{{-- @dump($object) --}}
+		{{-- {{ get_term_link( $object->term_id ) }} --}}
+		{{-- {{ get_query_var('tourism-type') }} --}}
 
 		<form class="mb-md-6 mb-sm-4 mb-3 form-filter">
 			<div class="d-sm-flex">
@@ -60,11 +94,16 @@
 
 		<div class="d-md-flex tab-collapse">
                     
-			<div class="nav flex-column" role="tablist" aria-orientation="vertical">
+			<div class="nav flex-column" role="tablist" aria-orientation="vertical" style="min-width:200px">
 
-				@foreach ( $type_terms as $key => $term )
-					<a class="nav-link" href="{{ get_term_link( $term->term_id ) }}" aria-selected="false">
-						{{ $term->name }} ({{ $term->count }})
+				@foreach ( $union_terms as $key => $term )
+					@php $active = '' @endphp
+					@if ( get_query_var('tourism-type') == $term->slug )
+						@php $active = 'active' @endphp
+					@endif
+					<a class="nav-link {{ $active }}" href="{{ get_term_link( $object->term_id ) }}tourism-type/{{ $term->slug }}" aria-selected="false">
+						{{-- {{ $term->name }} ({{ $term->count }}) --}}
+						{{ $term->name }}
 					</a>
 				@endforeach
 
@@ -101,7 +140,7 @@
 												<figure>
 													<div class="thumbnail">
 														<div class="aspectratio-4-3">
-															<div class="img" style="background-image: url({!! get_the_post_thumbnail_url( get_the_id(), 'thumbnail' ) !!});"></div>
+															<div class="img" style="background-image: url({!! get_the_post_thumbnail_url( get_the_id(), 'meduim' ) !!});"></div>
 														</div>
 													</div>
 													<figcaption class="block text-left">
