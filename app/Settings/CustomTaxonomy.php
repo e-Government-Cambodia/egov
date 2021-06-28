@@ -1051,7 +1051,10 @@ class CustomTaxonomy
         add_rewrite_rule( '^i-want-to/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-i-want-to=$matches[1]&service-for=$matches[2]', 'top' );
         add_rewrite_rule( '^topic/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-topic=$matches[1]&service-for=$matches[2]', 'top' );
         add_rewrite_rule( '^level/([^/]*)/([^/]*)/?$', 'index.php?post_type=service&service-level=$matches[1]&service-for=$matches[2]', 'top' );
-        add_rewrite_rule( '^tourism-location/([^/]*)/tourism-type/([^/]*)/page/([0-9]{1,})/?$', 'index.php?post_type=tourism&tourism-location=$matches[1]&tourism-type=$matches[2]&paged=$matches[3]', 'top' );
-        add_rewrite_rule( '^tourism-location/([^/]*)/tourism-type/([^/]*)/?$', 'index.php?post_type=tourism&tourism-location=$matches[1]&tourism-type=$matches[2]', 'top' );
+        add_rewrite_rule( '^tourism-location/([^/]*)/tourism-type/([^/]*)/?$', 'index.php?tourism-location=$matches[1]&tourism-type=$matches[2]', 'top' );
+        add_rewrite_rule( '^en/tourism-location/([^/]*)/tourism-type/([^/]*)/?$', 'index.php?tourism-location=$matches[1]&tourism-type=$matches[2]', 'top' );
+        add_rewrite_rule( '^tourism-location/([^/]*)/tourism-type/([^/]*)/page/([0-9]{1,})/?$', 'index.php?tourism-location=$matches[1]&tourism-type=$matches[2]&paged=$matches[3]', 'top' );
+        add_rewrite_rule( '^en/tourism-location/([^/]*)/tourism-type/([^/]*)/page/([0-9]{1,})/?$', 'index.php?tourism-location=$matches[1]&tourism-type=$matches[2]&paged=$matches[3]', 'top' );
+        
     }
 }

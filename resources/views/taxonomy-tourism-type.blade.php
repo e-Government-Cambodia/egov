@@ -39,6 +39,9 @@
 							<option value="#">
 								{{ __( 'Please Select', 'egov' ) }}
 							</option>
+							<option value="{{ get_post_type_archive_link( 'tourism' ) }}">
+								{{ __( 'All', 'egov' ) }}
+							</option>
 							@foreach ( $location_terms as $key => $term )
 								
 								@if ( $object->term_id == $term->term_id )

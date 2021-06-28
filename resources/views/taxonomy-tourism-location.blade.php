@@ -4,7 +4,14 @@
 	<div class="container">
 		@include('partials.search')
 		{{-- Location --}}
-		@include('partials.page-header')
+		{{-- @include('partials.page-header') --}}
+		<section>
+			<header class="block-heading text-left">
+				<h4 class="text-danger font-weight-bold">
+					{{ __( 'Tourism Site', 'egov' ) }} {!! App::title() !!}
+				</h4>
+			</header>
+		</section>
 		{{-- @include('partials.breadcrumbs-egov') --}}
 
 		
@@ -69,8 +76,8 @@
 				<div class="flex-sm-fill">
 					<div class="p-4 select">
 						<select class="custom-select custom-select-lg" id="inlineFormCustomSelectPref" onchange="location = this.value;">							
-							<option value="#">
-								{{ __( 'Please Select', 'egov' ) }}
+							<option value="{{ get_post_type_archive_link( 'tourism' ) }}">
+								{{ __( 'All', 'egov' ) }}
 							</option>
 							@foreach ( $location_terms as $key => $term )
 								
@@ -120,10 +127,7 @@
 							</div>
 							<div class="collapse show">
 								<div class="collapse-body">
-									<div class="grid light m-b row row-cols-md-3 row-cols-sm-2 row-cols-1">
-										
-										
-											
+									<div class="grid light m-b row row-cols-md-3 row-cols-sm-2 row-cols-1">	
 										@while(have_posts()) @php the_post() @endphp
 											@php
 												$tourism_locations = wp_get_post_terms( get_the_id(), 'tourism-location', array( 'fields' => 'names' ) );
