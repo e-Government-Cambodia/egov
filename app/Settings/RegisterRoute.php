@@ -18,18 +18,21 @@ class RegisterRoute
             array(
                 // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
                 'methods'  => \WP_REST_Server::READABLE,
-                'callback' => array( $this, 'getAllPosts' )
+                'callback' => array( $this, 'getAllPosts' ),
+                'permission_callback' => '__return_true'
             )
         );
         register_rest_route( 'wp/v2', '/get-term-for/for=(?P<for>[a-zA-Z0-9-]+)/level=(?P<level>[a-zA-Z0-9-,]+)', array(
             // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
             'methods'  => \WP_REST_Server::READABLE,
-            'callback' => array( $this, 'getTermList' )
+            'callback' => array( $this, 'getTermList' ),
+            'permission_callback' => '__return_true'
         ) );
         register_rest_route( 'wp/v2', '/get-union-term/topic=(?P<topic>[a-zA-Z0-9-]+)/for=(?P<for>[a-zA-Z0-9-]+)/level=(?P<level>[a-zA-Z0-9-,]+)/base=(?P<base>[a-zA-Z0-9-.]+)/page=(?P<page>[a-zA-Z0-9-_]+)', array(
             // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
             'methods'  => 'GET',
-            'callback' => array( $this, 'getUnionTermList' )
+            'callback' => array( $this, 'getUnionTermList' ),
+            'permission_callback' => '__return_true'
         ) );
     }   
     

@@ -14,10 +14,11 @@ class RegisterRestRoute
     }
 
     public function registerCallback() {
-        register_rest_route( 'wp/v2', '/all-posts/(?P<lang>[a-zA-Z0-9-]+)', array(
+        register_rest_route( 'wp/v1', '/all-posts/(?P<lang>[a-zA-Z0-9-]+)', array(
             // By using this constant we ensure that when the WP_REST_Server changes our readable endpoints will work as intended.
             'methods'  => \WP_REST_Server::READABLE,
-            'callback' => array( $this, 'custom_api_get_all_posts_callback' )
+            'callback' => array( $this, 'custom_api_get_all_posts_callback' ),
+            'permission_callback' => '__return_true'
         ) );
     }    
 
