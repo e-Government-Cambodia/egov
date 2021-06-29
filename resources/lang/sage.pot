@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 16:53+0700\n"
+"POT-Creation-Date: 2021-06-29 10:31+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 #: resources/functions.php:64
 #, php-format
 msgid "Error locating <code>%s</code> for inclusion."
+msgstr ""
+
+#: resources/views/partials/search.blade.php:12
+msgid "Search All Government"
 msgstr ""
 
 #: app/Settings/RegisterSidebar.php:23
@@ -102,71 +106,153 @@ msgstr ""
 msgid "3X = 120 × 120 pixels"
 msgstr ""
 
-#: app/Settings/CustomPostType.php:21
+#: app/Settings/CMB2.php:25
+msgid "Service Topic Metabox"
+msgstr ""
+
+#: app/Settings/CustomPostType.php:51
 msgid "Tourism"
 msgstr ""
 
-#: app/Settings/CustomPostType.php:33
+#: app/Settings/CustomPostType.php:63
 msgid ""
 "This post type is create for display tourism sector each provincial and type "
 "in Cambodia."
 msgstr ""
 
-#: app/Settings/CustomPostType.php:248
+#: app/Settings/CustomPostType.php:278
 msgid "Service"
 msgstr ""
 
-#: app/Settings/CustomPostType.php:260
+#: app/Settings/CustomPostType.php:290
 msgid "This post type is create for display government service of Cambodia."
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:23
-msgid "Type"
-msgstr ""
-
-#: app/Settings/CustomTaxonomy.php:29
-msgid "Tourism Type Taxonomy created for stor group type of tourism."
-msgstr ""
-
-#: app/Settings/CustomTaxonomy.php:195
+#: app/Settings/CustomTaxonomy.php:22
 msgid "Location"
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:201
+#: app/Settings/CustomTaxonomy.php:28
 msgid "Tourism Location Taxonomy created for stor group type of tourism."
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:368
-msgid "Service Type"
+#: app/Settings/CustomTaxonomy.php:195
+msgid "Type"
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:374
-msgid "Service Type Taxonomy created for store group type of services."
+#: app/Settings/CustomTaxonomy.php:201
+msgid "Tourism Type Taxonomy created for stor group type of tourism."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:366
+msgid "Service Topic"
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:372
+msgid "Service Topic Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:539
+msgid "Service Level"
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:545
+msgid "Service Level Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:712
+msgid "Service For"
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:718
+msgid "Service For Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:885
+msgid "Service I Want To"
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:891
+msgid "Service I Want To Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/FilterPostTypeByTaxonomy.php:33
+#, php-format
+msgid "Show All %s"
 msgstr ""
 
 #: app/filters.php:33
 msgid "Continued"
 msgstr ""
 
-#: app/Controllers/App.php:20
+#: app/Controllers/App.php:21
 msgid "Latest Posts"
 msgstr ""
 
-#: app/Controllers/App.php:26
+#: app/Controllers/App.php:25
 #, php-format
 msgid "Search Results for %s"
 msgstr ""
 
-#: app/Controllers/App.php:29
+#: app/Controllers/App.php:27
 msgid "Not Found"
 msgstr ""
 
+#: app/Controllers/App.php:61
+msgid "K"
+msgstr ""
+
+#: app/Controllers/App.php:64
+msgid "M"
+msgstr ""
+
+#: app/Controllers/App.php:67
+msgid "G"
+msgstr ""
+
+#: resources/views/backup-archive-service.blade.php:16
+msgid "TOPICS"
+msgstr ""
+
+#: resources/views/backup-archive-service.blade.php:57
+msgid "SERVICE FOR"
+msgstr ""
+
+#: resources/views/backup-archive-service.blade.php:102
+msgid "I WANT TO..."
+msgstr ""
+
 #: resources/views/index.blade.php:10 resources/views/search.blade.php:9
+#: resources/views/taxonomy-service-topic.blade.php:11
+#: resources/views/archive-tourism.blade.php:138
+#: resources/views/taxonomy-tourism-type.blade.php:130
+#: resources/views/taxonomy-tourism-location.blade.php:165
 msgid "Sorry, no results were found."
 msgstr ""
 
 #: resources/views/404.blade.php:10
 msgid "Sorry, but the page you were trying to view does not exist."
+msgstr ""
+
+#: resources/views/archive-tourism.blade.php:11
+#: resources/views/taxonomy-tourism-location.blade.php:11
+msgid "Tourism Site"
+msgstr ""
+
+#: resources/views/archive-tourism.blade.php:40
+#: resources/views/taxonomy-tourism-type.blade.php:33
+#: resources/views/taxonomy-tourism-location.blade.php:73
+msgid "Discovered by"
+msgstr ""
+
+#: resources/views/archive-tourism.blade.php:47
+#: resources/views/taxonomy-tourism-type.blade.php:43
+#: resources/views/taxonomy-tourism-location.blade.php:80
+msgid "All"
+msgstr ""
+
+#: resources/views/taxonomy-tourism-type.blade.php:40
+msgid "Please Select"
 msgstr ""
 
 #: resources/views/partials/related-tourism.blade.php:27
@@ -189,16 +275,12 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: resources/views/partials/search.blade.php:13
+#: resources/views/partials/search.blade.php:15
 msgid "Search"
 msgstr ""
 
-#: resources/views/partials/search.blade.php:19
+#: resources/views/partials/search.blade.php:21
 msgid "Popular Keywords"
-msgstr ""
-
-#: resources/views/partials/search.blade.php:19
-msgid "Search All Government"
 msgstr ""
 
 #: resources/views/partials/footer.blade.php:6
@@ -211,6 +293,10 @@ msgstr ""
 
 #: resources/views/partials/entry-meta.blade.php:3
 msgid "By"
+msgstr ""
+
+#: resources/views/partials/entry-meta.blade.php:9
+msgid "View"
 msgstr ""
 
 #: resources/views/partials/related.blade.php:21

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 16:53+0700\n"
-"PO-Revision-Date: 2020-05-18 17:58+0700\n"
+"POT-Creation-Date: 2021-06-29 10:31+0700\n"
+"PO-Revision-Date: 2021-06-29 10:41+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: resources/functions.php:22
@@ -50,6 +50,10 @@ msgstr ""
 #, php-format
 msgid "Error locating <code>%s</code> for inclusion."
 msgstr ""
+
+#: resources/views/partials/search.blade.php:12
+msgid "Search All Government"
+msgstr "ស្វែងរកគ្រប់វិស័យ"
 
 #: app/Settings/RegisterSidebar.php:23
 msgid "Primary"
@@ -103,72 +107,162 @@ msgstr ""
 msgid "3X = 120 × 120 pixels"
 msgstr ""
 
-#: app/Settings/CustomPostType.php:21
+#: app/Settings/CMB2.php:25
+#, fuzzy
+#| msgid "Service Type"
+msgid "Service Topic Metabox"
+msgstr "ប្រភេទសេវារដ្ឋបាល"
+
+#: app/Settings/CustomPostType.php:51
 msgid "Tourism"
 msgstr "វិស័យទេសចរណ៍"
 
-#: app/Settings/CustomPostType.php:33
+#: app/Settings/CustomPostType.php:63
 msgid ""
 "This post type is create for display tourism sector each provincial and type "
 "in Cambodia."
 msgstr ""
 
-#: app/Settings/CustomPostType.php:248
+#: app/Settings/CustomPostType.php:278
 msgid "Service"
 msgstr "សេវារដ្ឋបាល"
 
-#: app/Settings/CustomPostType.php:260
+#: app/Settings/CustomPostType.php:290
 msgid "This post type is create for display government service of Cambodia."
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:23
-msgid "Type"
-msgstr "ប្រភេទវិស័យទេសចរណ៍"
-
-#: app/Settings/CustomTaxonomy.php:29
-msgid "Tourism Type Taxonomy created for stor group type of tourism."
-msgstr ""
-
-#: app/Settings/CustomTaxonomy.php:195
+#: app/Settings/CustomTaxonomy.php:22
 msgid "Location"
 msgstr "ទីតាំងវិស័យទេសចរណ៍"
 
-#: app/Settings/CustomTaxonomy.php:201
+#: app/Settings/CustomTaxonomy.php:28
 msgid "Tourism Location Taxonomy created for stor group type of tourism."
 msgstr ""
 
-#: app/Settings/CustomTaxonomy.php:368
-msgid "Service Type"
+#: app/Settings/CustomTaxonomy.php:195
+msgid "Type"
+msgstr "ប្រភេទវិស័យទេសចរណ៍"
+
+#: app/Settings/CustomTaxonomy.php:201
+msgid "Tourism Type Taxonomy created for stor group type of tourism."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:366
+#, fuzzy
+#| msgid "Service Type"
+msgid "Service Topic"
 msgstr "ប្រភេទសេវារដ្ឋបាល"
 
-#: app/Settings/CustomTaxonomy.php:374
-msgid "Service Type Taxonomy created for store group type of services."
+#: app/Settings/CustomTaxonomy.php:372
+msgid "Service Topic Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:539
+#, fuzzy
+#| msgid "Service Type"
+msgid "Service Level"
+msgstr "ប្រភេទសេវារដ្ឋបាល"
+
+#: app/Settings/CustomTaxonomy.php:545
+msgid "Service Level Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:712
+msgid "Service For"
+msgstr "សេវារដ្ឋបាលសម្រាប់"
+
+#: app/Settings/CustomTaxonomy.php:718
+msgid "Service For Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/CustomTaxonomy.php:885
+#, fuzzy
+#| msgid "Service Type"
+msgid "Service I Want To"
+msgstr "ប្រភេទសេវារដ្ឋបាល"
+
+#: app/Settings/CustomTaxonomy.php:891
+msgid "Service I Want To Taxonomy created for store group type of services."
+msgstr ""
+
+#: app/Settings/FilterPostTypeByTaxonomy.php:33
+#, php-format
+msgid "Show All %s"
 msgstr ""
 
 #: app/filters.php:33
 msgid "Continued"
 msgstr "បន្ត"
 
-#: app/Controllers/App.php:20
+#: app/Controllers/App.php:21
 msgid "Latest Posts"
 msgstr "ព័ត៌មានថ្មីៗ"
 
-#: app/Controllers/App.php:26
+#: app/Controllers/App.php:25
 #, php-format
 msgid "Search Results for %s"
 msgstr "ការស្វែងរកនៃ %s"
 
-#: app/Controllers/App.php:29
+#: app/Controllers/App.php:27
 msgid "Not Found"
 msgstr "ពុំមានទិន្ន័យ"
 
+#: app/Controllers/App.php:61
+msgid "K"
+msgstr "ពាន់"
+
+#: app/Controllers/App.php:64
+msgid "M"
+msgstr "លាន"
+
+#: app/Controllers/App.php:67
+msgid "G"
+msgstr "ទ្រីលាន"
+
+#: resources/views/backup-archive-service.blade.php:16
+msgid "TOPICS"
+msgstr "មាតិកា"
+
+#: resources/views/backup-archive-service.blade.php:57
+msgid "SERVICE FOR"
+msgstr "សេវាសម្រាប់"
+
+#: resources/views/backup-archive-service.blade.php:102
+msgid "I WANT TO..."
+msgstr "ខ្ញុំចង់"
+
 #: resources/views/index.blade.php:10 resources/views/search.blade.php:9
+#: resources/views/taxonomy-service-topic.blade.php:11
+#: resources/views/archive-tourism.blade.php:138
+#: resources/views/taxonomy-tourism-type.blade.php:130
+#: resources/views/taxonomy-tourism-location.blade.php:165
 msgid "Sorry, no results were found."
 msgstr "សូមអភ័យទោស ការស្វែងរកពុំមានទិន្ន័យ។"
 
 #: resources/views/404.blade.php:10
 msgid "Sorry, but the page you were trying to view does not exist."
 msgstr "សូមអភ័យទោស ទំព័រដែលអ្នកបើកមើលនេះពុំមាននៅក្នុងប្រព័ន្ធ។"
+
+#: resources/views/archive-tourism.blade.php:11
+#: resources/views/taxonomy-tourism-location.blade.php:11
+msgid "Tourism Site"
+msgstr "គោលដៅទេសចរណ៍"
+
+#: resources/views/archive-tourism.blade.php:40
+#: resources/views/taxonomy-tourism-type.blade.php:33
+#: resources/views/taxonomy-tourism-location.blade.php:73
+msgid "Discovered by"
+msgstr "ស្វែងរកតាម"
+
+#: resources/views/archive-tourism.blade.php:47
+#: resources/views/taxonomy-tourism-type.blade.php:43
+#: resources/views/taxonomy-tourism-location.blade.php:80
+msgid "All"
+msgstr "ទាំងអស់"
+
+#: resources/views/taxonomy-tourism-type.blade.php:40
+msgid "Please Select"
+msgstr "សូមធ្វើការជ្រើសរើស"
 
 #: resources/views/partials/related-tourism.blade.php:27
 msgid "Related Tourism"
@@ -190,17 +284,13 @@ msgstr ""
 msgid "Pages:"
 msgstr "ទំព័រ:"
 
-#: resources/views/partials/search.blade.php:13
+#: resources/views/partials/search.blade.php:15
 msgid "Search"
 msgstr "ស្វែងរក"
 
-#: resources/views/partials/search.blade.php:19
+#: resources/views/partials/search.blade.php:21
 msgid "Popular Keywords"
 msgstr "ពាក្យគន្លឹះ"
-
-#: resources/views/partials/search.blade.php:19
-msgid "Search All Government"
-msgstr "ស្វែងរកគ្រប់វិស័យ"
 
 #: resources/views/partials/footer.blade.php:6
 msgid "Follow Us"
@@ -213,6 +303,10 @@ msgstr "សេវារដ្ឋបាលជាប់ទាក់ទង"
 #: resources/views/partials/entry-meta.blade.php:3
 msgid "By"
 msgstr "ដោយ"
+
+#: resources/views/partials/entry-meta.blade.php:9
+msgid "View"
+msgstr "ចំនួនមើល"
 
 #: resources/views/partials/related.blade.php:21
 msgid "Related Post"
