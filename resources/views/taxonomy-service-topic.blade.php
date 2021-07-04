@@ -33,7 +33,7 @@
 		@if ( count( $child_object ) )
 			<section class="service-detail">
 				<div class="tab-collapse">
-					<div class="row row-cols-2">
+					<div class="row">
 						<div class="col-12 col-md-4">
 							<div id="tab-collapse" role="tablist" aria-orientation="vertical" class="nav m-0">
 								@foreach ( $child_object as $key => $obj )
@@ -43,7 +43,7 @@
 								@endforeach								
 							</div>
 						</div>
-						<div class="col-12 col-md">
+						<div class="col-12 col-md-8">
 							<div class="tab-content" id="accordion-tab-collapse">
 								@foreach ( $child_object as $key => $obj )
 									<div id="tab-{{ $obj->term_id }}" role="tabpanel" aria-labelledby="tab-collapse-{{ $obj->term_id }}" class="tab-pane fade {{ $key === 0 ? 'active show' : '' }}">

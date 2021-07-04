@@ -202,7 +202,7 @@ class RegisterRoute
             <section class="service-detail">
 				<div class="tab-collapse">
 					<div class="row row-cols-2">
-						<div class="col-12 col-md-4">
+						<div class="col-12 col-lg-4">
                             <div id="tab-collapse" role="tablist" aria-orientation="vertical" class="nav m-0">
             ';
                                 $zin = true;
@@ -246,7 +246,7 @@ class RegisterRoute
             $html .= '							
 							</div>
                         </div>
-                        <div class="col-12 col-md">
+                        <div class="col-12 col-lg-8">
                             <div class="tab-content" id="accordion-tab-collapse">
             ';
                                 $zin = true;
